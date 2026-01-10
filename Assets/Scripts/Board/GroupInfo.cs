@@ -1,4 +1,4 @@
-namespace BlastPuzzle.Board
+namespace GoodJobInternshipCase.Board
 {
     /// <summary>
     /// Stores information about a detected group of same-colored blocks.

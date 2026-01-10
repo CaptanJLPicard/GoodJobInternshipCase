@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BlastPuzzle.Config
+namespace GoodJobInternshipCase.Config
 {
     /// <summary>
     /// Threshold preset options for group icon states
@@ -15,9 +15,9 @@ namespace BlastPuzzle.Config
 
     /// <summary>
     /// ScriptableObject containing all game configuration parameters.
-    /// Create via Assets > Create > BlastPuzzle > Game Config
+    /// Create via Assets > Create > GoodJobInternshipCase > Game Config
     /// </summary>
-    [CreateAssetMenu(fileName = "GameConfig", menuName = "BlastPuzzle/Game Config")]
+    [CreateAssetMenu(fileName = "GameConfig", menuName = "GoodJobInternshipCase/Game Config")]
     public class GameConfig : ScriptableObject
     {
         [Header("Board Settings")]

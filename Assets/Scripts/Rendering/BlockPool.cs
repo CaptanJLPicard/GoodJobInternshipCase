@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BlastPuzzle.Rendering
+namespace GoodJobInternshipCase.Rendering
 {
     /// <summary>
     /// Object pool for BlockVisual instances.

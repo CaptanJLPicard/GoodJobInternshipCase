@@ -1,6 +1,6 @@
 using System;
 
-namespace BlastPuzzle.Board
+namespace GoodJobInternshipCase.Board
 {
     /// <summary>
     /// Detects groups of same-colored adjacent blocks using flood fill algorithm.

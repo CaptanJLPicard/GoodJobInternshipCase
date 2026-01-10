@@ -1,7 +1,7 @@
 using UnityEngine;
 using MoreMountains.Feedbacks;
 
-namespace BlastPuzzle.Feedback
+namespace GoodJobInternshipCase.Feedback
 {
     /// <summary>
     /// Manages game feel and feedback effects using the Feel framework.

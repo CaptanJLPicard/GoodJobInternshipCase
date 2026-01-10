@@ -1,6 +1,6 @@
 using System;
 
-namespace BlastPuzzle.Board
+namespace GoodJobInternshipCase.Board
 {
     /// <summary>
     /// Spawns new blocks to fill empty cells at the top of columns.

@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab5d9d2090cf434883211ab45c84f4d, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  Rows: 8
-  Columns: 8
+  Rows: 10
+  Columns: 10
   ColorCount: 6
-  ThresholdPreset: 2
-  ThresholdA: 5
-  ThresholdB: 9
-  ThresholdC: 14
+  ThresholdPreset: 0
+  ThresholdA: 3
+  ThresholdB: 5
+  ThresholdC: 8
   FallDuration: 0.3
   SpawnDuration: 0.25
   BlastDuration: 0.2

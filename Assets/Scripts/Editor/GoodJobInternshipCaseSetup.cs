@@ -1,28 +1,29 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
-using BlastPuzzle.Config;
-using BlastPuzzle.Rendering;
+using GoodJobInternshipCase.Config;
+using GoodJobInternshipCase.Rendering;
+using GoodJobInternshipCase.Core;
 
-namespace BlastPuzzle.Editor
+namespace GoodJobInternshipCase.Editor
 {
     /// <summary>
     /// Editor utility for quick game setup.
     /// Creates all necessary prefabs and assets.
     /// </summary>
-    public class BlastPuzzleSetup : EditorWindow
+    public class GoodJobInternshipCaseSetup : EditorWindow
     {
         private static readonly string[] ColorNames = { "Blue", "Green", "Pink", "Purple", "Red", "Yellow" };
 
-        [MenuItem("Tools/BlastPuzzle/Setup Game")]
+        [MenuItem("Tools/GoodJobInternshipCase/Setup Game")]
         public static void ShowWindow()
         {
-            GetWindow<BlastPuzzleSetup>("Blast Puzzle Setup");
+            GetWindow<GoodJobInternshipCaseSetup>("GoodJobInternshipCase Setup");
         }
 
         private void OnGUI()
         {
-            GUILayout.Label("Blast Puzzle Quick Setup", EditorStyles.boldLabel);
+            GUILayout.Label("GoodJobInternshipCase Quick Setup", EditorStyles.boldLabel);
             EditorGUILayout.Space();
 
             EditorGUILayout.HelpBox(
@@ -62,7 +63,7 @@ namespace BlastPuzzle.Editor
                 MessageType.Warning);
         }
 
-        [MenuItem("Tools/BlastPuzzle/Create Block Prefab")]
+        [MenuItem("Tools/GoodJobInternshipCase/Create Block Prefab")]
         public static void CreateBlockPrefab()
         {
             // Ensure directory exists
@@ -100,7 +101,7 @@ namespace BlastPuzzle.Editor
             EditorGUIUtility.PingObject(prefab);
         }
 
-        [MenuItem("Tools/BlastPuzzle/Create GameConfig")]
+        [MenuItem("Tools/GoodJobInternshipCase/Create GameConfig")]
         public static void CreateGameConfig()
         {
             // Ensure directory exists
@@ -150,7 +151,7 @@ namespace BlastPuzzle.Editor
             return AssetDatabase.LoadAssetAtPath<Sprite>(path);
         }
 
-        [MenuItem("Tools/BlastPuzzle/Setup Scene")]
+        [MenuItem("Tools/GoodJobInternshipCase/Setup Scene")]
         public static void SetupScene()
         {
             // Find or create necessary objects
@@ -213,10 +214,10 @@ namespace BlastPuzzle.Editor
                 inputObj.transform.SetParent(gameManager.transform.parent);
             }
 
-            BlastPuzzle.Core.InputHandler inputHandler = inputObj.GetComponent<BlastPuzzle.Core.InputHandler>();
+            GoodJobInternshipCase.Core.InputHandler inputHandler = inputObj.GetComponent<GoodJobInternshipCase.Core.InputHandler>();
             if (inputHandler == null)
             {
-                inputHandler = inputObj.AddComponent<BlastPuzzle.Core.InputHandler>();
+                inputHandler = inputObj.AddComponent<GoodJobInternshipCase.Core.InputHandler>();
             }
 
             // 4. Create FeedbackManager
@@ -227,10 +228,10 @@ namespace BlastPuzzle.Editor
                 feedbackObj.transform.SetParent(gameManager.transform.parent);
             }
 
-            BlastPuzzle.Feedback.FeedbackManager feedbackManager = feedbackObj.GetComponent<BlastPuzzle.Feedback.FeedbackManager>();
+            GoodJobInternshipCase.Feedback.FeedbackManager feedbackManager = feedbackObj.GetComponent<GoodJobInternshipCase.Feedback.FeedbackManager>();
             if (feedbackManager == null)
             {
-                feedbackManager = feedbackObj.AddComponent<BlastPuzzle.Feedback.FeedbackManager>();
+                feedbackManager = feedbackObj.AddComponent<GoodJobInternshipCase.Feedback.FeedbackManager>();
             }
 
             // 5. Assign references via SerializedObject
@@ -268,6 +269,41 @@ namespace BlastPuzzle.Editor
                 if (prefabProp != null)
                     prefabProp.objectReferenceValue = blockPrefab;
                 poolSO.ApplyModifiedProperties();
+            }
+
+            // 7. Setup Camera with CameraFit for mobile
+            Camera mainCamera = Camera.main;
+            if (mainCamera != null)
+            {
+                CameraFit cameraFit = mainCamera.GetComponent<CameraFit>();
+                if (cameraFit == null)
+                {
+                    cameraFit = mainCamera.gameObject.AddComponent<CameraFit>();
+                }
+
+                // Assign config to CameraFit
+                if (config != null)
+                {
+                    SerializedObject camFitSO = new SerializedObject(cameraFit);
+                    SerializedProperty camConfigProp = camFitSO.FindProperty("_config");
+                    if (camConfigProp != null)
+                        camConfigProp.objectReferenceValue = config;
+                    camFitSO.ApplyModifiedProperties();
+                }
+            }
+
+            // 8. Add MobileOptimizer
+            GameObject optimizerObj = GameObject.Find("MobileOptimizer");
+            if (optimizerObj == null)
+            {
+                optimizerObj = new GameObject("MobileOptimizer");
+                optimizerObj.transform.SetParent(gameManager.transform.parent);
+            }
+
+            MobileOptimizer mobileOptimizer = optimizerObj.GetComponent<MobileOptimizer>();
+            if (mobileOptimizer == null)
+            {
+                mobileOptimizer = optimizerObj.AddComponent<MobileOptimizer>();
             }
 
             // Mark scene dirty

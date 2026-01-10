@@ -1,6 +1,6 @@
 using System;
 
-namespace BlastPuzzle.Board
+namespace GoodJobInternshipCase.Board
 {
     /// <summary>
     /// Implements smart shuffle algorithm that guarantees valid board state.

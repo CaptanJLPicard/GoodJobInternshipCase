@@ -1,4 +1,4 @@
-namespace BlastPuzzle.Board
+namespace GoodJobInternshipCase.Board
 {
     /// <summary>
     /// Lightweight struct representing a single block on the board.

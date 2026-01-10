@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace BlastPuzzle.Core
+namespace GoodJobInternshipCase.Core
 {
     /// <summary>
     /// Simple UI manager for score display and restart button.

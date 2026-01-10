@@ -1,4 +1,4 @@
-namespace BlastPuzzle.Board
+namespace GoodJobInternshipCase.Board
 {
     /// <summary>
     /// Processes block falling/gravity after blocks are destroyed.

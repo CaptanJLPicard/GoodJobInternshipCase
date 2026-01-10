@@ -1,7 +1,7 @@
 using System;
-using BlastPuzzle.Config;
+using GoodJobInternshipCase.Config;
 
-namespace BlastPuzzle.Board
+namespace GoodJobInternshipCase.Board
 {
     /// <summary>
     /// Manages all board logic including group detection, blasting, falling, and spawning.

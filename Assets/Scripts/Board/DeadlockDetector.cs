@@ -1,4 +1,4 @@
-namespace BlastPuzzle.Board
+namespace GoodJobInternshipCase.Board
 {
     /// <summary>
     /// Detects deadlock situations where no valid moves exist.

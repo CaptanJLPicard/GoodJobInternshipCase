@@ -1,20 +1,29 @@
 using System;
 using UnityEngine;
 
-namespace BlastPuzzle.Core
+namespace GoodJobInternshipCase.Core
 {
     /// <summary>
-    /// Handles player input using the old Input System.
-    /// Detects clicks/touches and converts to world positions.
+    /// Handles player input for both mobile (touch) and desktop (mouse).
+    /// Optimized for mobile with proper touch handling.
     /// </summary>
     public class InputHandler : MonoBehaviour
     {
         [Header("Settings")]
         [SerializeField] private Camera _mainCamera;
-        [SerializeField] private LayerMask _boardLayer = -1;
+
+        [Header("Mobile Settings")]
+        [Tooltip("Prevent multi-touch - only first finger is processed")]
+        [SerializeField] private bool _singleTouchOnly = true;
+
+        [Tooltip("Minimum drag distance to be considered a swipe (ignore small movements)")]
+        [SerializeField] private float _tapThreshold = 10f;
 
         private bool _isEnabled = true;
         private bool _wasPressed;
+        private int _activeTouchId = -1;
+        private Vector2 _touchStartPos;
+        private bool _isMobile;
 
         // Events
         public event Action<Vector3> OnClick;
@@ -27,6 +36,15 @@ namespace BlastPuzzle.Core
             {
                 _mainCamera = Camera.main;
             }
+
+            // Detect platform
+            _isMobile = Application.isMobilePlatform;
+
+            // Mobile optimization: Set target frame rate
+            if (_isMobile)
+            {
+                Application.targetFrameRate = 60;
+            }
         }
 
         private void Update()
@@ -34,16 +52,132 @@ namespace BlastPuzzle.Core
             if (!_isEnabled || _mainCamera == null)
                 return;
 
-            // Handle mouse/touch input
+            if (_isMobile || Input.touchCount > 0)
+            {
+                HandleTouchInput();
+            }
+            else
+            {
+                HandleMouseInput();
+            }
+        }
+
+        /// <summary>
+        /// Handle touch input for mobile devices
+        /// </summary>
+        private void HandleTouchInput()
+        {
+            if (Input.touchCount == 0)
+            {
+                if (_wasPressed)
+                {
+                    _wasPressed = false;
+                    _activeTouchId = -1;
+                }
+                return;
+            }
+
+            Touch touch;
+
+            // Single touch mode - only track one finger
+            if (_singleTouchOnly)
+            {
+                if (_activeTouchId >= 0)
+                {
+                    // Find our tracked touch
+                    bool found = false;
+                    for (int i = 0; i < Input.touchCount; i++)
+                    {
+                        if (Input.GetTouch(i).fingerId == _activeTouchId)
+                        {
+                            touch = Input.GetTouch(i);
+                            found = true;
+                            ProcessTouch(touch);
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        // Touch ended
+                        _wasPressed = false;
+                        _activeTouchId = -1;
+                    }
+                }
+                else
+                {
+                    // Start tracking first touch
+                    touch = Input.GetTouch(0);
+                    if (touch.phase == TouchPhase.Began)
+                    {
+                        _activeTouchId = touch.fingerId;
+                        _touchStartPos = touch.position;
+                        ProcessTouch(touch);
+                    }
+                }
+            }
+            else
+            {
+                // Multi-touch mode - process first touch
+                touch = Input.GetTouch(0);
+                ProcessTouch(touch);
+            }
+        }
+
+        /// <summary>
+        /// Process a single touch event
+        /// </summary>
+        private void ProcessTouch(Touch touch)
+        {
+            Vector3 worldPos = ScreenToWorld(touch.position);
+
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    _wasPressed = true;
+                    _touchStartPos = touch.position;
+                    OnClick?.Invoke(worldPos);
+                    break;
+
+                case TouchPhase.Moved:
+                case TouchPhase.Stationary:
+                    if (_wasPressed)
+                    {
+                        OnHold?.Invoke(worldPos);
+                    }
+                    break;
+
+                case TouchPhase.Ended:
+                case TouchPhase.Canceled:
+                    if (_wasPressed)
+                    {
+                        // Check if it was a tap (not a drag)
+                        float dragDistance = Vector2.Distance(touch.position, _touchStartPos);
+                        if (dragDistance < _tapThreshold)
+                        {
+                            // It's a tap - trigger release at tap position
+                            OnRelease?.Invoke(worldPos);
+                        }
+                        _wasPressed = false;
+                        _activeTouchId = -1;
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Handle mouse input for desktop/editor
+        /// </summary>
+        private void HandleMouseInput()
+        {
             bool isPressed = Input.GetMouseButton(0);
 
-            // Only process if we have a valid press
             if (!isPressed && !_wasPressed)
                 return;
 
             Vector3 inputPosition = Input.mousePosition;
 
-            // Validate screen position is within screen bounds
+            // Validate screen position
             if (inputPosition.x < 0 || inputPosition.x > Screen.width ||
                 inputPosition.y < 0 || inputPosition.y > Screen.height)
             {
@@ -51,28 +185,33 @@ namespace BlastPuzzle.Core
                 return;
             }
 
-            // Convert to world position
-            inputPosition.z = Mathf.Abs(_mainCamera.transform.position.z);
-            Vector3 worldPos = _mainCamera.ScreenToWorldPoint(inputPosition);
-            worldPos.z = 0f;
+            Vector3 worldPos = ScreenToWorld(inputPosition);
 
             if (isPressed && !_wasPressed)
             {
-                // Just pressed
                 OnClick?.Invoke(worldPos);
             }
             else if (isPressed && _wasPressed)
             {
-                // Holding
                 OnHold?.Invoke(worldPos);
             }
             else if (!isPressed && _wasPressed)
             {
-                // Just released
                 OnRelease?.Invoke(worldPos);
             }
 
             _wasPressed = isPressed;
+        }
+
+        /// <summary>
+        /// Convert screen position to world position
+        /// </summary>
+        private Vector3 ScreenToWorld(Vector2 screenPos)
+        {
+            Vector3 pos = new Vector3(screenPos.x, screenPos.y, Mathf.Abs(_mainCamera.transform.position.z));
+            Vector3 worldPos = _mainCamera.ScreenToWorldPoint(pos);
+            worldPos.z = 0f;
+            return worldPos;
         }
 
         /// <summary>
@@ -90,6 +229,7 @@ namespace BlastPuzzle.Core
         {
             _isEnabled = false;
             _wasPressed = false;
+            _activeTouchId = -1;
         }
 
         /// <summary>

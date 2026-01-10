@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
-using BlastPuzzle.Board;
-using BlastPuzzle.Config;
-using BlastPuzzle.Core;
-using BlastPuzzle.Rendering;
-using BlastPuzzle.Feedback;
+using GoodJobInternshipCase.Board;
+using GoodJobInternshipCase.Config;
+using GoodJobInternshipCase.Core;
+using GoodJobInternshipCase.Rendering;
+using GoodJobInternshipCase.Feedback;
 
 /// <summary>
 /// Main game controller that orchestrates all game systems.

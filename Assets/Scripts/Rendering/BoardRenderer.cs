@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using BlastPuzzle.Board;
-using BlastPuzzle.Config;
+using GoodJobInternshipCase.Board;
+using GoodJobInternshipCase.Config;
 
-namespace BlastPuzzle.Rendering
+namespace GoodJobInternshipCase.Rendering
 {
     /// <summary>
     /// Renders the game board and coordinates block animations.

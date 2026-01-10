@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
-using BlastPuzzle.Config;
+using GoodJobInternshipCase.Config;
 
-namespace BlastPuzzle.Rendering
+namespace GoodJobInternshipCase.Rendering
 {
     /// <summary>
     /// Visual representation of a single block on the board.
