@@ -3,7 +3,8 @@
     "allow": [
       "Bash(xargs:*)",
       "Bash(cat:*)",
-      "Bash(dir /s \"E:\\\\MY_WORKS_E\\\\Unity_Works_works\\\\GoodJobInternshipCase_REPO\\\\Assets\\\\Scripts\")"
+      "Bash(dir /s \"E:\\\\MY_WORKS_E\\\\Unity_Works_works\\\\GoodJobInternshipCase_REPO\\\\Assets\\\\Scripts\")",
+      "Bash(dir:*)"
     ]
   }
 }
