@@ -284,6 +284,7 @@ MonoBehaviour:
   _startScale: 0.5
   _peakScale: 3
   _endScale: 0.8
+  _screenMargin: 300
 --- !u!222 &1361288754194643977
 CanvasRenderer:
   m_ObjectHideFlags: 0

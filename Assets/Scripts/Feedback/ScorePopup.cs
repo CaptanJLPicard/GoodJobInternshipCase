@@ -26,6 +26,10 @@ namespace GoodJobInternshipCase.Feedback
         [SerializeField] private float _peakScale = 1.2f;
         [SerializeField] private float _endScale = 0.8f;
 
+        [Header("Screen Bounds")]
+        [Tooltip("Minimum margin from screen edges")]
+        [SerializeField] private float _screenMargin = 80f;
+
         // Animation state
         private RectTransform _rectTransform;
         private Vector2 _startPosition;
@@ -60,12 +64,15 @@ namespace GoodJobInternshipCase.Feedback
         public void Show(int score, Vector2 screenPosition, Color color)
         {
             // Set text
-            _text.text = $"<rainb>+{score}</rainb>";
+            _text.text = $"+{score}";
             _text.color = color;
 
+            // Clamp position to screen bounds
+            Vector2 clampedPos = ClampToScreenBounds(screenPosition);
+
             // Set position
-            _startPosition = screenPosition;
-            _rectTransform.anchoredPosition = screenPosition;
+            _startPosition = clampedPos;
+            _rectTransform.anchoredPosition = clampedPos;
 
             // Reset state
             _animationTime = 0f;
@@ -83,6 +90,32 @@ namespace GoodJobInternshipCase.Feedback
         {
             Vector2 screenPos = camera.WorldToScreenPoint(worldPosition);
             Show(score, screenPos, color);
+        }
+
+        /// <summary>
+        /// Clamp screen position to stay within visible screen bounds
+        /// </summary>
+        private Vector2 ClampToScreenBounds(Vector2 screenPosition)
+        {
+            float screenWidth = Screen.width;
+            float screenHeight = Screen.height;
+
+            // Clamp X position (left and right edges)
+            float clampedX = Mathf.Clamp(
+                screenPosition.x,
+                _screenMargin,
+                screenWidth - _screenMargin
+            );
+
+            // Clamp Y position (bottom and top edges)
+            // Also account for upward movement during animation
+            float clampedY = Mathf.Clamp(
+                screenPosition.y,
+                _screenMargin,
+                screenHeight - _screenMargin - _moveDistance
+            );
+
+            return new Vector2(clampedX, clampedY);
         }
 
         private void Update()

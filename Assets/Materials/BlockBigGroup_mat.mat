@@ -170,7 +170,7 @@ Material:
     - _OutlineDistortAmount: 0.5
     - _OutlineDistortTexXSpeed: 5
     - _OutlineDistortTexYSpeed: 5
-    - _OutlineGlow: 40
+    - _OutlineGlow: 100
     - _OutlinePixelWidth: 26.35
     - _OutlineTexXSpeed: 10
     - _OutlineTexYSpeed: 0
