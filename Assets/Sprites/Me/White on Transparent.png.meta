@@ -1,0 +1,923 @@
+fileFormatVersion: 2
+guid: 22122ac548980ea4c801fbc669c815d1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2042650611776847097
+    second: White on Transparent_0
+  - first:
+      213: 5297618244647277322
+    second: White on Transparent_1
+  - first:
+      213: -8679134919451109122
+    second: White on Transparent_2
+  - first:
+      213: 4821646689478223627
+    second: White on Transparent_3
+  - first:
+      213: -8840114269730541061
+    second: White on Transparent_4
+  - first:
+      213: -829990741513624326
+    second: White on Transparent_5
+  - first:
+      213: -3460163658943113692
+    second: White on Transparent_6
+  - first:
+      213: -1044022076512545452
+    second: White on Transparent_7
+  - first:
+      213: 4104915860796624883
+    second: White on Transparent_8
+  - first:
+      213: -5473483247634874989
+    second: White on Transparent_9
+  - first:
+      213: -4468956154117539009
+    second: White on Transparent_10
+  - first:
+      213: 1402809043657158295
+    second: White on Transparent_11
+  - first:
+      213: -8552294203394292039
+    second: White on Transparent_12
+  - first:
+      213: 8347200614020189492
+    second: White on Transparent_13
+  - first:
+      213: 4030325969978436047
+    second: White on Transparent_14
+  - first:
+      213: 1703362717094064741
+    second: White on Transparent_15
+  - first:
+      213: -6091238117930253301
+    second: White on Transparent_16
+  - first:
+      213: -2910633875174650392
+    second: White on Transparent_17
+  - first:
+      213: -8440406902373197161
+    second: White on Transparent_18
+  - first:
+      213: 1240451579443738122
+    second: White on Transparent_19
+  - first:
+      213: -43498150334409265
+    second: White on Transparent_20
+  - first:
+      213: 6662426349583076852
+    second: White on Transparent_21
+  - first:
+      213: -2234271023096421912
+    second: White on Transparent_22
+  - first:
+      213: -4315823718693040989
+    second: White on Transparent_23
+  - first:
+      213: -2528808816290539146
+    second: White on Transparent_24
+  - first:
+      213: -3522619595499901150
+    second: White on Transparent_25
+  - first:
+      213: 8889075433005605748
+    second: White on Transparent_26
+  - first:
+      213: 8526150462213380733
+    second: White on Transparent_27
+  - first:
+      213: -123568673454730849
+    second: White on Transparent_28
+  - first:
+      213: 962899297800643935
+    second: White on Transparent_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: White on Transparent_0
+      rect:
+        serializedVersion: 2
+        x: 1249
+        y: 1801
+        width: 2502
+        height: 1478
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7038ecc471c07a3e0800000000000000
+      internalID: -2042650611776847097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 702
+        width: 711
+        height: 712
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0354dbb9bbe48940800000000000000
+      internalID: 5297618244647277322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_2
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 702
+        width: 648
+        height: 712
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef89d6856c48d8780800000000000000
+      internalID: -8679134919451109122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_3
+      rect:
+        serializedVersion: 2
+        x: 1594
+        y: 692
+        width: 770
+        height: 732
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b07a9ce2e1ee9e240800000000000000
+      internalID: 4821646689478223627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_4
+      rect:
+        serializedVersion: 2
+        x: 2445
+        y: 703
+        width: 131
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf179da98ea915580800000000000000
+      internalID: -8840114269730541061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_5
+      rect:
+        serializedVersion: 2
+        x: 2687
+        y: 702
+        width: 712
+        height: 712
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af4a73d61d74b74f0800000000000000
+      internalID: -829990741513624326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_6
+      rect:
+        serializedVersion: 2
+        x: 3519
+        y: 702
+        width: 648
+        height: 712
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 426daf32c770bffc0800000000000000
+      internalID: -3460163658943113692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_7
+      rect:
+        serializedVersion: 2
+        x: 4211
+        y: 692
+        width: 789
+        height: 722
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 455ddcfe373e281f0800000000000000
+      internalID: -1044022076512545452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_8
+      rect:
+        serializedVersion: 2
+        x: 749
+        y: 290
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ff46a30a3797f830800000000000000
+      internalID: 4104915860796624883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_9
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 81
+        width: 63
+        height: 215
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39dfbac6cf74a04b0800000000000000
+      internalID: -5473483247634874989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_10
+      rect:
+        serializedVersion: 2
+        x: 2194
+        y: 77
+        width: 143
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3b370d2e041bf1c0800000000000000
+      internalID: -4468956154117539009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_11
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 81
+        width: 73
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79ee3ee8467c77310800000000000000
+      internalID: 1402809043657158295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_12
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 0
+        width: 73
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b60d08ebb5205980800000000000000
+      internalID: -8552294203394292039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_13
+      rect:
+        serializedVersion: 2
+        x: 1082
+        y: 77
+        width: 97
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43d889babb637d370800000000000000
+      internalID: 8347200614020189492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_14
+      rect:
+        serializedVersion: 2
+        x: 1209
+        y: 0
+        width: 140
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc9a899bd189ee730800000000000000
+      internalID: 4030325969978436047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_15
+      rect:
+        serializedVersion: 2
+        x: 1388
+        y: 77
+        width: 97
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 562390ccd5f83a710800000000000000
+      internalID: 1703362717094064741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_16
+      rect:
+        serializedVersion: 2
+        x: 1528
+        y: 81
+        width: 145
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b04c27a5433977ba0800000000000000
+      internalID: -6091238117930253301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_17
+      rect:
+        serializedVersion: 2
+        x: 1813
+        y: 81
+        width: 180
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ed0ff669e95b97d0800000000000000
+      internalID: -2910633875174650392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_18
+      rect:
+        serializedVersion: 2
+        x: 2025
+        y: 77
+        width: 121
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79a5a4834a6adda80800000000000000
+      internalID: -8440406902373197161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_19
+      rect:
+        serializedVersion: 2
+        x: 2473
+        y: 80
+        width: 137
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a06f0d9a328f63110800000000000000
+      internalID: 1240451579443738122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_20
+      rect:
+        serializedVersion: 2
+        x: 2652
+        y: 78
+        width: 146
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc55ee8a9a6756ff0800000000000000
+      internalID: -43498150334409265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_21
+      rect:
+        serializedVersion: 2
+        x: 2834
+        y: 0
+        width: 119
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fd0a154771b57c50800000000000000
+      internalID: 6662426349583076852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_22
+      rect:
+        serializedVersion: 2
+        x: 3093
+        y: 81
+        width: 166
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e1a36897564ef0e0800000000000000
+      internalID: -2234271023096421912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_23
+      rect:
+        serializedVersion: 2
+        x: 3273
+        y: 78
+        width: 146
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ac881ea13d1b14c0800000000000000
+      internalID: -4315823718693040989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_24
+      rect:
+        serializedVersion: 2
+        x: 3457
+        y: 78
+        width: 83
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6795020a7cdd7ecd0800000000000000
+      internalID: -2528808816290539146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_25
+      rect:
+        serializedVersion: 2
+        x: 3577
+        y: 81
+        width: 217
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22fe56b34242d1fc0800000000000000
+      internalID: -3522619595499901150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_26
+      rect:
+        serializedVersion: 2
+        x: 3844
+        y: 79
+        width: 108
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47363fd82075c5b70800000000000000
+      internalID: 8889075433005605748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_27
+      rect:
+        serializedVersion: 2
+        x: 3991
+        y: 81
+        width: 98
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7ad2c10ca8f25670800000000000000
+      internalID: 8526150462213380733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_28
+      rect:
+        serializedVersion: 2
+        x: 4249
+        y: 136
+        width: 26
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f915d5932fef84ef0800000000000000
+      internalID: -123568673454730849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: White on Transparent_29
+      rect:
+        serializedVersion: 2
+        x: 4247
+        y: 78
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5561e74fc7ec5d00800000000000000
+      internalID: 962899297800643935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      White on Transparent_0: -2042650611776847097
+      White on Transparent_1: 5297618244647277322
+      White on Transparent_10: -4468956154117539009
+      White on Transparent_11: 1402809043657158295
+      White on Transparent_12: -8552294203394292039
+      White on Transparent_13: 8347200614020189492
+      White on Transparent_14: 4030325969978436047
+      White on Transparent_15: 1703362717094064741
+      White on Transparent_16: -6091238117930253301
+      White on Transparent_17: -2910633875174650392
+      White on Transparent_18: -8440406902373197161
+      White on Transparent_19: 1240451579443738122
+      White on Transparent_2: -8679134919451109122
+      White on Transparent_20: -43498150334409265
+      White on Transparent_21: 6662426349583076852
+      White on Transparent_22: -2234271023096421912
+      White on Transparent_23: -4315823718693040989
+      White on Transparent_24: -2528808816290539146
+      White on Transparent_25: -3522619595499901150
+      White on Transparent_26: 8889075433005605748
+      White on Transparent_27: 8526150462213380733
+      White on Transparent_28: -123568673454730849
+      White on Transparent_29: 962899297800643935
+      White on Transparent_3: 4821646689478223627
+      White on Transparent_4: -8840114269730541061
+      White on Transparent_5: -829990741513624326
+      White on Transparent_6: -3460163658943113692
+      White on Transparent_7: -1044022076512545452
+      White on Transparent_8: 4104915860796624883
+      White on Transparent_9: -5473483247634874989
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
