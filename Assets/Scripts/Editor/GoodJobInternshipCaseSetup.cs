@@ -9,6 +9,8 @@ using UnityEditor;
 using GoodJobInternshipCase.Config;
 using GoodJobInternshipCase.Rendering;
 using GoodJobInternshipCase.Core;
+using GoodJobInternshipCase.Feedback;
+using TMPro;
 
 namespace GoodJobInternshipCase.Editor
 {
@@ -34,6 +36,7 @@ namespace GoodJobInternshipCase.Editor
             EditorGUILayout.HelpBox(
                 "This will create:\n" +
                 "- Block Prefab (in Assets/Prefabs/)\n" +
+                "- ScorePopup Prefab (in Assets/Prefabs/)\n" +
                 "- GameConfig asset (in Assets/ScriptableObjects/)\n" +
                 "- Sprite assignments will be auto-configured",
                 MessageType.Info);
@@ -43,6 +46,13 @@ namespace GoodJobInternshipCase.Editor
             if (GUILayout.Button("Create Block Prefab", GUILayout.Height(30)))
             {
                 CreateBlockPrefab();
+            }
+
+            EditorGUILayout.Space();
+
+            if (GUILayout.Button("Create ScorePopup Prefab", GUILayout.Height(30)))
+            {
+                CreateScorePopupPrefab();
             }
 
             EditorGUILayout.Space();
@@ -63,8 +73,9 @@ namespace GoodJobInternshipCase.Editor
             EditorGUILayout.HelpBox(
                 "After setup, assign:\n" +
                 "1. Block Prefab to BlockPool\n" +
-                "2. GameConfig to GameManager\n" +
-                "3. References in GameManager inspector",
+                "2. ScorePopup Prefab to ScorePopupPool\n" +
+                "3. GameConfig to GameManager\n" +
+                "4. References in GameManager inspector",
                 MessageType.Warning);
         }
 
@@ -103,6 +114,62 @@ namespace GoodJobInternshipCase.Editor
             DestroyImmediate(block);
 
             Debug.Log($"Block prefab created at: {prefabPath}");
+            EditorGUIUtility.PingObject(prefab);
+        }
+
+        [MenuItem("Tools/GoodJobInternshipCase/Create ScorePopup Prefab")]
+        public static void CreateScorePopupPrefab()
+        {
+            // Ensure directory exists
+            if (!AssetDatabase.IsValidFolder("Assets/Prefabs"))
+            {
+                AssetDatabase.CreateFolder("Assets", "Prefabs");
+            }
+
+            // Create ScorePopup GameObject
+            GameObject popup = new GameObject("ScorePopup");
+
+            // Add RectTransform (required for UI)
+            RectTransform rectTransform = popup.AddComponent<RectTransform>();
+            rectTransform.sizeDelta = new Vector2(200f, 50f);
+
+            // Add CanvasGroup for alpha fading
+            CanvasGroup canvasGroup = popup.AddComponent<CanvasGroup>();
+
+            // Add ScorePopup component
+            ScorePopup scorePopup = popup.AddComponent<ScorePopup>();
+
+            // Create Text child
+            GameObject textObj = new GameObject("Text");
+            textObj.transform.SetParent(popup.transform);
+
+            RectTransform textRect = textObj.AddComponent<RectTransform>();
+            textRect.anchorMin = Vector2.zero;
+            textRect.anchorMax = Vector2.one;
+            textRect.offsetMin = Vector2.zero;
+            textRect.offsetMax = Vector2.zero;
+
+            // Add TextMeshProUGUI
+            TextMeshProUGUI tmp = textObj.AddComponent<TextMeshProUGUI>();
+            tmp.text = "+100";
+            tmp.fontSize = 36;
+            tmp.fontStyle = FontStyles.Bold;
+            tmp.alignment = TextAlignmentOptions.Center;
+            tmp.color = Color.white;
+            tmp.enableWordWrapping = false;
+
+            // Try to add outline for better visibility
+            // Note: Outline is added via TMP settings, not as component
+
+            // Save as prefab
+            string prefabPath = "Assets/Prefabs/ScorePopup.prefab";
+            GameObject prefab = PrefabUtility.SaveAsPrefabAsset(popup, prefabPath);
+
+            // Cleanup
+            DestroyImmediate(popup);
+
+            Debug.Log($"ScorePopup prefab created at: {prefabPath}");
+            Debug.Log("NOTE: Add this prefab to a Canvas in your scene, then assign it to ScorePopupPool.");
             EditorGUIUtility.PingObject(prefab);
         }
 
@@ -311,6 +378,49 @@ namespace GoodJobInternshipCase.Editor
             if (mobileOptimizer == null)
             {
                 mobileOptimizer = optimizerObj.AddComponent<MobileOptimizer>();
+            }
+
+            // 9. Create Canvas for UI (Score Popup)
+            Canvas canvas = Object.FindFirstObjectByType<Canvas>();
+            if (canvas == null)
+            {
+                GameObject canvasObj = new GameObject("Canvas");
+                canvas = canvasObj.AddComponent<Canvas>();
+                canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+                canvas.sortingOrder = 100; // Above other UI
+
+                canvasObj.AddComponent<UnityEngine.UI.CanvasScaler>();
+                canvasObj.AddComponent<UnityEngine.UI.GraphicRaycaster>();
+            }
+
+            // 10. Create ScorePopupPool
+            ScorePopupPool scorePopupPool = Object.FindFirstObjectByType<ScorePopupPool>();
+            if (scorePopupPool == null)
+            {
+                GameObject poolObj = new GameObject("ScorePopupPool");
+                poolObj.transform.SetParent(canvas.transform);
+                scorePopupPool = poolObj.AddComponent<ScorePopupPool>();
+            }
+
+            // Assign ScorePopup prefab to pool
+            GameObject scorePopupPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/ScorePopup.prefab");
+            if (scorePopupPrefab != null && scorePopupPool != null)
+            {
+                SerializedObject poolSO = new SerializedObject(scorePopupPool);
+                SerializedProperty prefabProp = poolSO.FindProperty("_popupPrefab");
+                if (prefabProp != null)
+                    prefabProp.objectReferenceValue = scorePopupPrefab.GetComponent<ScorePopup>();
+                poolSO.ApplyModifiedProperties();
+            }
+
+            // 11. Assign ScorePopupPool to FeedbackManager
+            if (feedbackManager != null && scorePopupPool != null)
+            {
+                SerializedObject fbSO = new SerializedObject(feedbackManager);
+                SerializedProperty poolProp = fbSO.FindProperty("_scorePopupPool");
+                if (poolProp != null)
+                    poolProp.objectReferenceValue = scorePopupPool;
+                fbSO.ApplyModifiedProperties();
             }
 
             // Mark scene dirty

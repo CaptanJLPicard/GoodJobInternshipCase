@@ -3,6 +3,7 @@
 // For more follow my itch.io account (Heodev) - Begin to begin
 // ============================================================================
 
+using System;
 using UnityEngine;
 using MoreMountains.Feedbacks;
 using GoodJobInternshipCase.Config;
@@ -33,6 +34,22 @@ namespace GoodJobInternshipCase.Feedback
         [Tooltip("Warning feedback when deadlock is detected")]
         [SerializeField] private MMF_Player _deadlockFeedback;
 
+        [Header("Score Popup")]
+        [Tooltip("Pool for score popup instances")]
+        [SerializeField] private ScorePopupPool _scorePopupPool;
+
+        [Tooltip("Camera for world-to-screen conversion")]
+        [SerializeField] private Camera _mainCamera;
+
+        [Tooltip("Color for normal score popup")]
+        [SerializeField] private Color _normalScoreColor = Color.white;
+
+        [Tooltip("Color for big group score popup (ThresholdB+)")]
+        [SerializeField] private Color _bigScoreColor = Color.yellow;
+
+        [Tooltip("Color for huge group score popup (ThresholdC+)")]
+        [SerializeField] private Color _hugeScoreColor = new Color(1f, 0.5f, 0f); // Orange
+
         [Header("Audio")]
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _blastSound;
@@ -47,6 +64,9 @@ namespace GoodJobInternshipCase.Feedback
         // Reference to game config for threshold values
         private GameConfig _config;
 
+        // Event for delayed score addition
+        public event Action<int> OnScorePopupComplete;
+
         private void Awake()
         {
             // Create audio source if not assigned
@@ -59,6 +79,12 @@ namespace GoodJobInternshipCase.Feedback
                     _audioSource.playOnAwake = false;
                     _audioSource.spatialBlend = 0f; // 2D sound
                 }
+            }
+
+            // Get main camera if not assigned
+            if (_mainCamera == null)
+            {
+                _mainCamera = Camera.main;
             }
         }
 
@@ -74,6 +100,12 @@ namespace GoodJobInternshipCase.Feedback
             if (config != null)
             {
                 SetAudioClips(config.BlastSound, config.LandSound, config.ShuffleSound);
+            }
+
+            // Initialize score popup pool if available
+            if (_scorePopupPool != null && !_scorePopupPool.IsInitialized)
+            {
+                _scorePopupPool.Initialize();
             }
         }
 
@@ -177,5 +209,80 @@ namespace GoodJobInternshipCase.Feedback
             if (land != null) _landSound = land;
             if (shuffle != null) _shuffleSound = shuffle;
         }
+
+        #region Score Popup
+
+        /// <summary>
+        /// Show animated score popup at world position.
+        /// Call this before adding score to show "+X" animation.
+        /// </summary>
+        /// <param name="score">Score amount to display</param>
+        /// <param name="worldPosition">World position to spawn popup</param>
+        /// <param name="groupSize">Group size for color selection</param>
+        public void ShowScorePopup(int score, Vector3 worldPosition, int groupSize)
+        {
+            if (_scorePopupPool == null || _mainCamera == null)
+                return;
+
+            ScorePopup popup = _scorePopupPool.Get();
+            if (popup == null)
+                return;
+
+            // Determine color based on group size thresholds
+            Color popupColor = GetScoreColor(groupSize);
+
+            // Show popup
+            popup.Show(score, worldPosition, _mainCamera, popupColor);
+        }
+
+        /// <summary>
+        /// Show animated score popup at screen position.
+        /// </summary>
+        public void ShowScorePopup(int score, Vector2 screenPosition, int groupSize)
+        {
+            if (_scorePopupPool == null)
+                return;
+
+            ScorePopup popup = _scorePopupPool.Get();
+            if (popup == null)
+                return;
+
+            Color popupColor = GetScoreColor(groupSize);
+            popup.Show(score, screenPosition, popupColor);
+        }
+
+        /// <summary>
+        /// Get popup color based on group size and thresholds
+        /// </summary>
+        private Color GetScoreColor(int groupSize)
+        {
+            if (_config == null)
+                return _normalScoreColor;
+
+            if (groupSize > _config.ThresholdC)
+                return _hugeScoreColor;
+            else if (groupSize > _config.ThresholdB)
+                return _bigScoreColor;
+            else
+                return _normalScoreColor;
+        }
+
+        /// <summary>
+        /// Set score popup pool at runtime
+        /// </summary>
+        public void SetScorePopupPool(ScorePopupPool pool)
+        {
+            _scorePopupPool = pool;
+        }
+
+        /// <summary>
+        /// Set camera reference for world-to-screen conversion
+        /// </summary>
+        public void SetCamera(Camera camera)
+        {
+            _mainCamera = camera;
+        }
+
+        #endregion
     }
 }

@@ -232,16 +232,21 @@ public class GameManager : MonoBehaviour
 
     private void HandleBlocksDestroyed(int[] indices, int count)
     {
-        // Add score based on destroyed blocks
+        // Calculate score
         int points = CalculateScore(count);
-        AddScore(points);
 
-        // Play feedback
+        // Calculate center position for effects
+        Vector3 center = CalculateGroupCenter(indices, count);
+
+        // Show score popup BEFORE adding score (match-3 style feedback)
         if (_feedbackManager != null && count > 0)
         {
-            Vector3 center = CalculateGroupCenter(indices, count);
+            _feedbackManager.ShowScorePopup(points, center, count);
             _feedbackManager.PlayBlastFeedback(center, count);
         }
+
+        // Add score after showing popup
+        AddScore(points);
 
         // Render destruction
         if (_boardRenderer != null)

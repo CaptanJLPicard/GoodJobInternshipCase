@@ -739,6 +739,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169760540}
   m_CullTransparentMesh: 1
+--- !u!1 &402167542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 402167543}
+  - component: {fileID: 402167544}
+  m_Layer: 0
+  m_Name: ScorePopupPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &402167543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402167542}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -443.71494, y: -960.00006, z: 0}
+  m_LocalScale: {x: 0.69114476, y: 0.69114476, z: 0.69114476}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1738391332}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &402167544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402167542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460e4d49fde3da1439c29fe78b1897fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _popupPrefab: {fileID: 8287806949453812554, guid: d39ce43133b8ec8498548f6568c7f581, type: 3}
+  _initialPoolSize: 10
+  _popupContainer: {fileID: 0}
 --- !u!1 &419154139
 GameObject:
   m_ObjectHideFlags: 0
@@ -4141,6 +4188,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 169760541}
+  - {fileID: 402167543}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4519,6 +4567,11 @@ MonoBehaviour:
   _landFeedback: {fileID: 1881138368}
   _shuffleFeedback: {fileID: 1366200012}
   _deadlockFeedback: {fileID: 1372815975}
+  _scorePopupPool: {fileID: 402167544}
+  _mainCamera: {fileID: 0}
+  _normalScoreColor: {r: 1, g: 1, b: 1, a: 1}
+  _bigScoreColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _hugeScoreColor: {r: 1, g: 0.5, b: 0, a: 1}
   _audioSource: {fileID: 0}
   _blastSound: {fileID: 0}
   _landSound: {fileID: 0}
