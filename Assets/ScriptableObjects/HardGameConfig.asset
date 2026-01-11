@@ -60,6 +60,8 @@ MonoBehaviour:
     SpriteA: {fileID: 21300000, guid: 9e98c2a1628e1bc418089badc27e1083, type: 3}
     SpriteB: {fileID: 21300000, guid: 9803b9ef613a1284c91547e6ec612d4c, type: 3}
     SpriteC: {fileID: 21300000, guid: f176651c1f6c1e942a0785480199fb04, type: 3}
+  DefaultBlockMaterial: {fileID: 2100000, guid: 17950375ad30938438912b8a59339f3b, type: 2}
+  SpecialBlockMaterial: {fileID: 2100000, guid: 03217b87259d0844d96e53b07bf01761, type: 2}
   BlastSound: {fileID: 0}
   LandSound: {fileID: 0}
   ShuffleSound: {fileID: 0}

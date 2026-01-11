@@ -217,6 +217,9 @@ namespace GoodJobInternshipCase.Rendering
                 BlockVisual block = _blockPool.Get();
                 if (block != null)
                 {
+                    // Set materials for threshold-based visual change
+                    block.SetMaterials(_config.DefaultBlockMaterial, _config.SpecialBlockMaterial);
+
                     // Set color from board data
                     byte colorIndex = boardData[targetIndex].ColorIndex;
                     if (colorIndex < _config.ColorSprites.Length)
@@ -386,6 +389,9 @@ namespace GoodJobInternshipCase.Rendering
             BlockVisual block = _blockPool.Get();
             if (block == null)
                 return;
+
+            // Set materials for threshold-based visual change
+            block.SetMaterials(_config.DefaultBlockMaterial, _config.SpecialBlockMaterial);
 
             byte colorIndex = blockData.ColorIndex;
             if (colorIndex < _config.ColorSprites.Length)

@@ -134,6 +134,12 @@ public class GameManager : MonoBehaviour
             _boardRenderer.OnAllAnimationsComplete += HandleAnimationsComplete;
         }
 
+        // Initialize feedback manager with config (syncs BigGroupThreshold with ThresholdB)
+        if (_feedbackManager != null)
+        {
+            _feedbackManager.Initialize(_config);
+        }
+
         // Initialize input
         if (_inputHandler != null)
         {

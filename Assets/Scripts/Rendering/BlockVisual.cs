@@ -28,6 +28,11 @@ namespace GoodJobInternshipCase.Rendering
         private byte _currentColorIndex;
         private byte _currentIconState;
 
+        // Material references
+        private Material _defaultMaterial;
+        private Material _specialMaterial;
+        private bool _hasMaterials;
+
         // Animation state
         private Vector3 _startPos;
         private Vector3 _targetPos;
@@ -55,6 +60,22 @@ namespace GoodJobInternshipCase.Rendering
         }
 
         /// <summary>
+        /// Set materials for normal and special states
+        /// </summary>
+        public void SetMaterials(Material defaultMaterial, Material specialMaterial)
+        {
+            _defaultMaterial = defaultMaterial;
+            _specialMaterial = specialMaterial;
+            _hasMaterials = _defaultMaterial != null || _specialMaterial != null;
+
+            // Apply default material initially
+            if (_defaultMaterial != null)
+            {
+                _spriteRenderer.material = _defaultMaterial;
+            }
+        }
+
+        /// <summary>
         /// Set block color and sprite set
         /// </summary>
         public void SetColor(byte colorIndex, BlockSpriteSet spriteSet)
@@ -67,18 +88,47 @@ namespace GoodJobInternshipCase.Rendering
             {
                 _spriteRenderer.sprite = spriteSet.DefaultSprite;
             }
+
+            // Reset to default material
+            if (_hasMaterials && _defaultMaterial != null)
+            {
+                _spriteRenderer.material = _defaultMaterial;
+            }
         }
 
         /// <summary>
-        /// Update icon state based on group size
+        /// Update icon state based on group size.
+        /// Changes material to special when iconState >= 2 (ThresholdB and above).
         /// </summary>
         public void SetIconState(byte iconState)
         {
             if (_currentIconState == iconState)
                 return;
 
+            byte previousState = _currentIconState;
             _currentIconState = iconState;
             _spriteRenderer.sprite = _currentSpriteSet.GetSprite(iconState);
+
+            // Change material based on icon state
+            // iconState 0 = Default, 1 = A (normal material)
+            // iconState 2 = B, 3 = C (special material)
+            if (_hasMaterials)
+            {
+                bool wasSpecial = previousState >= 2;
+                bool isSpecial = iconState >= 2;
+
+                if (wasSpecial != isSpecial)
+                {
+                    if (isSpecial && _specialMaterial != null)
+                    {
+                        _spriteRenderer.material = _specialMaterial;
+                    }
+                    else if (!isSpecial && _defaultMaterial != null)
+                    {
+                        _spriteRenderer.material = _defaultMaterial;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -98,6 +148,13 @@ namespace GoodJobInternshipCase.Rendering
             _transform.localScale = Vector3.one;
             _spriteRenderer.color = _originalColor;
             BoardIndex = -1;
+            _currentIconState = 0;
+
+            // Reset to default material
+            if (_hasMaterials && _defaultMaterial != null)
+            {
+                _spriteRenderer.material = _defaultMaterial;
+            }
         }
 
         #region Animations

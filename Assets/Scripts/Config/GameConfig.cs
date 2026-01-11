@@ -79,6 +79,13 @@ namespace GoodJobInternshipCase.Config
         [Header("Sprites - Assign 6 colors, each with 4 states (Default, A, B, C)")]
         public BlockSpriteSet[] ColorSprites = new BlockSpriteSet[6];
 
+        [Header("Materials")]
+        [Tooltip("Default material for blocks")]
+        public Material DefaultBlockMaterial;
+
+        [Tooltip("Special material for blocks at ThresholdB and above (SpriteB, SpriteC)")]
+        public Material SpecialBlockMaterial;
+
         [Header("Audio (Optional - null-safe)")]
         public AudioClip BlastSound;
         public AudioClip LandSound;

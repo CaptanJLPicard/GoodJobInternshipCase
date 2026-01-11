@@ -5,6 +5,7 @@
 
 using UnityEngine;
 using MoreMountains.Feedbacks;
+using GoodJobInternshipCase.Config;
 
 namespace GoodJobInternshipCase.Feedback
 {
@@ -39,12 +40,12 @@ namespace GoodJobInternshipCase.Feedback
         [SerializeField] private AudioClip _shuffleSound;
 
         [Header("Settings")]
-        [Tooltip("Group size threshold for big group feedback")]
-        [SerializeField] private int _bigGroupThreshold = 5;
-
         [Tooltip("Volume for sound effects")]
         [Range(0f, 1f)]
         [SerializeField] private float _sfxVolume = 0.7f;
+
+        // Reference to game config for threshold values
+        private GameConfig _config;
 
         private void Awake()
         {
@@ -62,6 +63,21 @@ namespace GoodJobInternshipCase.Feedback
         }
 
         /// <summary>
+        /// Initialize feedback manager with game config.
+        /// Big group threshold syncs with GameConfig.ThresholdB.
+        /// </summary>
+        public void Initialize(GameConfig config)
+        {
+            _config = config;
+
+            // Also set audio clips from config if available
+            if (config != null)
+            {
+                SetAudioClips(config.BlastSound, config.LandSound, config.ShuffleSound);
+            }
+        }
+
+        /// <summary>
         /// Play feedback for block destruction
         /// </summary>
         public void PlayBlastFeedback(Vector3 position, int groupSize)
@@ -73,8 +89,9 @@ namespace GoodJobInternshipCase.Feedback
                 _blastFeedback.PlayFeedbacks();
             }
 
-            // Big group bonus feedback
-            if (groupSize > _bigGroupThreshold && _bigGroupFeedback != null)
+            // Big group bonus feedback - uses ThresholdB from GameConfig
+            int bigGroupThreshold = _config != null ? _config.ThresholdB : 5;
+            if (groupSize > bigGroupThreshold && _bigGroupFeedback != null)
             {
                 _bigGroupFeedback.PlayFeedbacks();
             }
