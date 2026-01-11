@@ -18,7 +18,12 @@ MonoBehaviour:
   ThresholdA: 4
   ThresholdB: 7
   ThresholdC: 10
-  FallDuration: 0.3
+  BaseScorePerBlock: 10
+  ScoreMultiplierDefault: 1
+  ScoreMultiplierA: 2
+  ScoreMultiplierB: 3
+  ScoreMultiplierC: 5
+  FallDuration: 0.5
   SpawnDuration: 0.25
   BlastDuration: 0.2
   ShuffleDuration: 0.5

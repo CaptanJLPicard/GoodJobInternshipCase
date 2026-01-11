@@ -23,7 +23,7 @@ MonoBehaviour:
   ScoreMultiplierA: 2
   ScoreMultiplierB: 3
   ScoreMultiplierC: 5
-  FallDuration: 0.3
+  FallDuration: 0.5
   SpawnDuration: 0.25
   BlastDuration: 0.2
   ShuffleDuration: 0.5
