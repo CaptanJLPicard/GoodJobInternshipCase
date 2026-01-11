@@ -360,24 +360,7 @@ public class GameManager : MonoBehaviour
 
     private int CalculateScore(int blocksDestroyed)
     {
-        // Base score + bonus for larger groups
-        int baseScore = blocksDestroyed * 10;
-        int bonus = 0;
-
-        if (blocksDestroyed > _config.GetThresholdC())
-        {
-            bonus = blocksDestroyed * 5;
-        }
-        else if (blocksDestroyed > _config.GetThresholdB())
-        {
-            bonus = blocksDestroyed * 3;
-        }
-        else if (blocksDestroyed > _config.GetThresholdA())
-        {
-            bonus = blocksDestroyed * 2;
-        }
-
-        return baseScore + bonus;
+        return _config.CalculateScore(blocksDestroyed);
     }
 
     private void AddScore(int points)

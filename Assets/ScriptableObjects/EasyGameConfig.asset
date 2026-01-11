@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ab5d9d2090cf434883211ab45c84f4d, type: 3}
+  m_Name: EasyGameConfig
+  m_EditorClassIdentifier: 
+  Rows: 10
+  Columns: 10
+  ColorCount: 6
+  ThresholdA: 3
+  ThresholdB: 5
+  ThresholdC: 8
+  BaseScorePerBlock: 10
+  ScoreMultiplierDefault: 1
+  ScoreMultiplierA: 2
+  ScoreMultiplierB: 3
+  ScoreMultiplierC: 5
+  FallDuration: 0.3
+  SpawnDuration: 0.25
+  BlastDuration: 0.2
+  ShuffleDuration: 0.5
+  CellSize: 2
+  CellSpacing: 0.1
+  ColorSprites:
+  - ColorName: Blue
+    DefaultSprite: {fileID: 21300000, guid: d3414ad0621aac54aaad6d99566328c4, type: 3}
+    SpriteA: {fileID: 21300000, guid: 3a478b9402ed78c4ab067c4a11cdf912, type: 3}
+    SpriteB: {fileID: 21300000, guid: 86b8611f8b7369040b4fcafb35f1865c, type: 3}
+    SpriteC: {fileID: 21300000, guid: c71be941c9702b143849e8d2762f66a7, type: 3}
+  - ColorName: Green
+    DefaultSprite: {fileID: 21300000, guid: dbeac4ee821bb3a4f81013f63a4a7283, type: 3}
+    SpriteA: {fileID: 21300000, guid: 24700fc5c217b5340a4ecc034aa0fb83, type: 3}
+    SpriteB: {fileID: 21300000, guid: 1bf70faeaf047d649a23f0e46ac6ff42, type: 3}
+    SpriteC: {fileID: 21300000, guid: ba681445ce92aaf458b7c1b274824936, type: 3}
+  - ColorName: Pink
+    DefaultSprite: {fileID: 21300000, guid: a245a93876aa6c4478b820227f5f2910, type: 3}
+    SpriteA: {fileID: 21300000, guid: 0e09ab18fa7ce644d99fd21cbcf017c9, type: 3}
+    SpriteB: {fileID: 21300000, guid: c07ed27e2c7b654408276b0213788e57, type: 3}
+    SpriteC: {fileID: 21300000, guid: 2e22ffae600163940878782d94397895, type: 3}
+  - ColorName: Purple
+    DefaultSprite: {fileID: 21300000, guid: 0cf21db3fe14abd4188706a5cd38b873, type: 3}
+    SpriteA: {fileID: 21300000, guid: 2497b732854b9fc4ba21bdaa7419bcf9, type: 3}
+    SpriteB: {fileID: 21300000, guid: 386d8e0b193d6f44abb645c6772c8415, type: 3}
+    SpriteC: {fileID: 21300000, guid: 9a02fc5c65799cb4d98db117705ba906, type: 3}
+  - ColorName: Red
+    DefaultSprite: {fileID: 21300000, guid: bdb6a867f3a82e44587d005a766cf69c, type: 3}
+    SpriteA: {fileID: 21300000, guid: 6ce7a0ceb119eae49bebb8ac81a529ee, type: 3}
+    SpriteB: {fileID: 21300000, guid: f071ea97b1651524d8d33723d2a5f06a, type: 3}
+    SpriteC: {fileID: 21300000, guid: 3214864da09200349a7799a688c98769, type: 3}
+  - ColorName: Yellow
+    DefaultSprite: {fileID: 21300000, guid: 2c84e900e37800242bd528334e772c9d, type: 3}
+    SpriteA: {fileID: 21300000, guid: 9e98c2a1628e1bc418089badc27e1083, type: 3}
+    SpriteB: {fileID: 21300000, guid: 9803b9ef613a1284c91547e6ec612d4c, type: 3}
+    SpriteC: {fileID: 21300000, guid: f176651c1f6c1e942a0785480199fb04, type: 3}
+  BlastSound: {fileID: 0}
+  LandSound: {fileID: 0}
+  ShuffleSound: {fileID: 0}

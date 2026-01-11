@@ -40,6 +40,22 @@ namespace GoodJobInternshipCase.Config
         [Range(2, 50)]
         public int ThresholdC = 8;
 
+        [Header("Score Settings")]
+        [Tooltip("Base score per block destroyed")]
+        public int BaseScorePerBlock = 10;
+
+        [Tooltip("Score multiplier for Default groups (below ThresholdA)")]
+        public int ScoreMultiplierDefault = 1;
+
+        [Tooltip("Score multiplier for A groups")]
+        public int ScoreMultiplierA = 2;
+
+        [Tooltip("Score multiplier for B groups")]
+        public int ScoreMultiplierB = 3;
+
+        [Tooltip("Score multiplier for C groups")]
+        public int ScoreMultiplierC = 5;
+
         [Header("Animation Timings")]
         [Tooltip("Duration of block falling animation")]
         public float FallDuration = 0.3f;
@@ -92,6 +108,25 @@ namespace GoodJobInternshipCase.Config
             if (groupSize > ThresholdB) return 2; // B icon
             if (groupSize > ThresholdA) return 1; // A icon
             return 0; // Default icon
+        }
+
+        /// <summary>
+        /// Calculate score for destroying a group
+        /// </summary>
+        public int CalculateScore(int groupSize)
+        {
+            int multiplier;
+
+            if (groupSize > ThresholdC)
+                multiplier = ScoreMultiplierC;
+            else if (groupSize > ThresholdB)
+                multiplier = ScoreMultiplierB;
+            else if (groupSize > ThresholdA)
+                multiplier = ScoreMultiplierA;
+            else
+                multiplier = ScoreMultiplierDefault;
+
+            return groupSize * BaseScorePerBlock * multiplier;
         }
 
         /// <summary>
