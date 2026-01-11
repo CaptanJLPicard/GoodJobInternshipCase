@@ -1,18 +1,12 @@
+// ============================================================================
+// Made By Hakan Emre ÖZKAN
+// For more follow my itch.io account (Heodev) - Begin to begin
+// ============================================================================
+
 using UnityEngine;
 
 namespace GoodJobInternshipCase.Config
 {
-    /// <summary>
-    /// Threshold preset options for group icon states
-    /// </summary>
-    public enum ThresholdPreset
-    {
-        Easy,      // A=3, B=5, C=8
-        Medium,    // A=4, B=7, C=10
-        Hard,      // A=5, B=9, C=14
-        Custom     // User-defined values
-    }
-
     /// <summary>
     /// ScriptableObject containing all game configuration parameters.
     /// Create via Assets > Create > GoodJobInternshipCase > Game Config
@@ -34,18 +28,15 @@ namespace GoodJobInternshipCase.Config
         public int ColorCount = 4;
 
         [Header("Threshold Settings")]
-        [Tooltip("Select a preset or choose Custom for manual values")]
-        public ThresholdPreset ThresholdPreset = ThresholdPreset.Easy;
-
-        [Tooltip("Group size threshold for A icon (only used when preset is Custom)")]
+        [Tooltip("Group size threshold for A icon")]
         [Range(2, 20)]
         public int ThresholdA = 3;
 
-        [Tooltip("Group size threshold for B icon (only used when preset is Custom)")]
+        [Tooltip("Group size threshold for B icon")]
         [Range(2, 30)]
         public int ThresholdB = 5;
 
-        [Tooltip("Group size threshold for C icon (only used when preset is Custom)")]
+        [Tooltip("Group size threshold for C icon")]
         [Range(2, 50)]
         public int ThresholdC = 8;
 
@@ -78,55 +69,28 @@ namespace GoodJobInternshipCase.Config
         public AudioClip ShuffleSound;
 
         /// <summary>
-        /// Get the effective threshold A value based on preset
+        /// Get threshold A value
         /// </summary>
-        public int GetThresholdA()
-        {
-            return ThresholdPreset switch
-            {
-                ThresholdPreset.Easy => 3,
-                ThresholdPreset.Medium => 4,
-                ThresholdPreset.Hard => 5,
-                _ => ThresholdA
-            };
-        }
+        public int GetThresholdA() => ThresholdA;
 
         /// <summary>
-        /// Get the effective threshold B value based on preset
+        /// Get threshold B value
         /// </summary>
-        public int GetThresholdB()
-        {
-            return ThresholdPreset switch
-            {
-                ThresholdPreset.Easy => 5,
-                ThresholdPreset.Medium => 7,
-                ThresholdPreset.Hard => 9,
-                _ => ThresholdB
-            };
-        }
+        public int GetThresholdB() => ThresholdB;
 
         /// <summary>
-        /// Get the effective threshold C value based on preset
+        /// Get threshold C value
         /// </summary>
-        public int GetThresholdC()
-        {
-            return ThresholdPreset switch
-            {
-                ThresholdPreset.Easy => 8,
-                ThresholdPreset.Medium => 10,
-                ThresholdPreset.Hard => 14,
-                _ => ThresholdC
-            };
-        }
+        public int GetThresholdC() => ThresholdC;
 
         /// <summary>
         /// Calculate icon state based on group size
         /// </summary>
         public byte CalculateIconState(int groupSize)
         {
-            if (groupSize > GetThresholdC()) return 3; // C icon
-            if (groupSize > GetThresholdB()) return 2; // B icon
-            if (groupSize > GetThresholdA()) return 1; // A icon
+            if (groupSize > ThresholdC) return 3; // C icon
+            if (groupSize > ThresholdB) return 2; // B icon
+            if (groupSize > ThresholdA) return 1; // A icon
             return 0; // Default icon
         }
 
@@ -150,12 +114,9 @@ namespace GoodJobInternshipCase.Config
 
         private void OnValidate()
         {
-            // Ensure thresholds are in ascending order for custom mode
-            if (ThresholdPreset == ThresholdPreset.Custom)
-            {
-                ThresholdB = Mathf.Max(ThresholdB, ThresholdA + 1);
-                ThresholdC = Mathf.Max(ThresholdC, ThresholdB + 1);
-            }
+            // Ensure thresholds are in ascending order
+            ThresholdB = Mathf.Max(ThresholdB, ThresholdA + 1);
+            ThresholdC = Mathf.Max(ThresholdC, ThresholdB + 1);
 
             // Ensure at least 2 colors for gameplay
             ColorCount = Mathf.Max(2, ColorCount);

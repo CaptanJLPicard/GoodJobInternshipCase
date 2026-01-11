@@ -1,3 +1,8 @@
+// ============================================================================
+// Made By Hakan Emre ÖZKAN
+// For more follow my itch.io account (Heodev) - Begin to begin
+// ============================================================================
+
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
@@ -117,7 +122,9 @@ namespace GoodJobInternshipCase.Editor
             config.Rows = 8;
             config.Columns = 8;
             config.ColorCount = 4;
-            config.ThresholdPreset = ThresholdPreset.Easy;
+            config.ThresholdA = 3;
+            config.ThresholdB = 5;
+            config.ThresholdC = 8;
 
             // Setup sprites
             config.ColorSprites = new BlockSpriteSet[6];

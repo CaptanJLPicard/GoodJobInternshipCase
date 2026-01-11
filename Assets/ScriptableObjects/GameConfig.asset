@@ -15,7 +15,6 @@ MonoBehaviour:
   Rows: 10
   Columns: 10
   ColorCount: 6
-  ThresholdPreset: 0
   ThresholdA: 3
   ThresholdB: 5
   ThresholdC: 8
