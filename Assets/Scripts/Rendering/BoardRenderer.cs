@@ -1,6 +1,6 @@
 // ============================================================================
 // Made By Hakan Emre ÖZKAN
-// For more follow my itch.io account (Heodev) - Begin to begin
+// For more follow my itch.io account (Heodev) - To begin, begin
 // ============================================================================
 
 using System;
@@ -46,6 +46,9 @@ namespace GoodJobInternshipCase.Rendering
 
         public bool IsAnimating => _isAnimating || _pendingAnimations > 0;
 
+        // Cached for performance
+        private int _animatingCount;
+
         private void Awake()
         {
             _animatingBlocks = new List<BlockVisual>(100);
@@ -53,16 +56,18 @@ namespace GoodJobInternshipCase.Rendering
 
         private void Update()
         {
-            // Update all animations in single pass
-            if (_animatingBlocks.Count > 0)
-            {
-                float dt = Time.deltaTime;
+            // Early exit if nothing to animate
+            _animatingCount = _animatingBlocks.Count;
+            if (_animatingCount == 0)
+                return;
 
-                // Iterate backwards to safely remove completed animations
-                for (int i = _animatingBlocks.Count - 1; i >= 0; i--)
-                {
-                    _animatingBlocks[i].UpdateAnimation(dt);
-                }
+            // Cache deltaTime to avoid repeated property access
+            float dt = Time.deltaTime;
+
+            // Update all animations in single pass (backwards for safe removal)
+            for (int i = _animatingCount - 1; i >= 0; i--)
+            {
+                _animatingBlocks[i].UpdateAnimation(dt);
             }
         }
 

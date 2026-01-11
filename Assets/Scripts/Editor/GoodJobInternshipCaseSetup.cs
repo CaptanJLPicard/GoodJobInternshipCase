@@ -1,6 +1,6 @@
 // ============================================================================
 // Made By Hakan Emre ÖZKAN
-// For more follow my itch.io account (Heodev) - Begin to begin
+// For more follow my itch.io account (Heodev) - To begin, begin
 // ============================================================================
 
 #if UNITY_EDITOR
@@ -77,6 +77,82 @@ namespace GoodJobInternshipCase.Editor
                 "3. GameConfig to GameManager\n" +
                 "4. References in GameManager inspector",
                 MessageType.Warning);
+
+            // Developer Credits
+            EditorGUILayout.Space(20);
+            DrawDeveloperCredits();
+        }
+
+        private void DrawDeveloperCredits()
+        {
+            // Separator line
+            EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+
+            // Credits box
+            GUIStyle creditStyle = new GUIStyle(EditorStyles.centeredGreyMiniLabel)
+            {
+                fontSize = 10,
+                wordWrap = true
+            };
+
+            GUIStyle titleStyle = new GUIStyle(EditorStyles.boldLabel)
+            {
+                alignment = TextAnchor.MiddleCenter,
+                fontSize = 11
+            };
+
+            GUIStyle linkStyle = new GUIStyle(EditorStyles.linkLabel)
+            {
+                alignment = TextAnchor.MiddleCenter
+            };
+
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+
+            EditorGUILayout.Space(5);
+            EditorGUILayout.LabelField("Made By Hakan Emre ÖZKAN", titleStyle);
+            EditorGUILayout.LabelField("\"To begin, begin\"", creditStyle);
+            EditorGUILayout.Space(5);
+
+            // Developer logo/image
+            Texture2D logoTexture = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Sprites/Me/White on Transparent.png");
+            if (logoTexture != null)
+            {
+                float maxWidth = 80f;
+                float aspectRatio = (float)logoTexture.height / logoTexture.width;
+                float imageHeight = maxWidth * aspectRatio;
+
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                GUILayout.Label(logoTexture, GUILayout.Width(maxWidth), GUILayout.Height(imageHeight));
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.Space(5);
+            }
+
+            // Clickable links
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.FlexibleSpace();
+            if (GUILayout.Button("heodev.itch.io", linkStyle))
+            {
+                Application.OpenURL("https://heodev.itch.io/");
+            }
+            EditorGUIUtility.AddCursorRect(GUILayoutUtility.GetLastRect(), MouseCursor.Link);
+            GUILayout.FlexibleSpace();
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.FlexibleSpace();
+            if (GUILayout.Button("eaglebyte-games.itch.io", linkStyle))
+            {
+                Application.OpenURL("https://eaglebyte-games.itch.io/");
+            }
+            EditorGUIUtility.AddCursorRect(GUILayoutUtility.GetLastRect(), MouseCursor.Link);
+            GUILayout.FlexibleSpace();
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.Space(5);
+            EditorGUILayout.EndVertical();
         }
 
         [MenuItem("Tools/GoodJobInternshipCase/Create Block Prefab")]
@@ -423,11 +499,21 @@ namespace GoodJobInternshipCase.Editor
                 fbSO.ApplyModifiedProperties();
             }
 
+            // 12. Add URP Optimizer for mobile performance
+            URPOptimizer urpOptimizer = Object.FindFirstObjectByType<URPOptimizer>();
+            if (urpOptimizer == null)
+            {
+                GameObject urpObj = new GameObject("URPOptimizer");
+                urpObj.transform.SetParent(gameManager.transform.parent);
+                urpOptimizer = urpObj.AddComponent<URPOptimizer>();
+            }
+
             // Mark scene dirty
             UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(
                 UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
 
             Debug.Log("Scene setup complete! Check GameManager inspector for any missing references.");
+            Debug.Log("For low-end devices: Set MobileOptimizer to 'Low' tier and URPOptimizer RenderScale to 0.75");
             Selection.activeGameObject = gameManager.gameObject;
         }
     }

@@ -1,6 +1,6 @@
 // ============================================================================
 // Made By Hakan Emre ÖZKAN
-// For more follow my itch.io account (Heodev) - Begin to begin
+// For more follow my itch.io account (Heodev) - To begin, begin
 // ============================================================================
 
 using System;
@@ -46,17 +46,25 @@ namespace GoodJobInternshipCase.Rendering
         public bool IsAnimating => _currentAnimation != AnimationType.None;
         public event Action<BlockVisual> OnAnimationComplete;
 
+        // Cached values for performance
+        private static readonly Vector3 s_one = Vector3.one;
+        private static readonly Vector3 s_zero = Vector3.zero;
+        private static readonly Color s_white = Color.white;
+
         private void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _transform = transform;
-            _originalColor = Color.white;
+            _originalColor = s_white;
 
-            // Optimization: Disable unnecessary rendering features
+            // Aggressive rendering optimizations for mobile
             _spriteRenderer.receiveShadows = false;
             _spriteRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             _spriteRenderer.lightProbeUsage = UnityEngine.Rendering.LightProbeUsage.Off;
             _spriteRenderer.reflectionProbeUsage = UnityEngine.Rendering.ReflectionProbeUsage.Off;
+            _spriteRenderer.motionVectorGenerationMode = UnityEngine.MotionVectorGenerationMode.ForceNoMotion;
+            _spriteRenderer.allowOcclusionWhenDynamic = false;
+            _spriteRenderer.renderingLayerMask = 1; // Only default layer
         }
 
         /// <summary>
@@ -145,15 +153,15 @@ namespace GoodJobInternshipCase.Rendering
         public void ResetVisual()
         {
             _currentAnimation = AnimationType.None;
-            _transform.localScale = Vector3.one;
+            _transform.localScale = s_one;
             _spriteRenderer.color = _originalColor;
             BoardIndex = -1;
             _currentIconState = 0;
 
-            // Reset to default material
+            // Reset to default material (use sharedMaterial to avoid instantiation)
             if (_hasMaterials && _defaultMaterial != null)
             {
-                _spriteRenderer.material = _defaultMaterial;
+                _spriteRenderer.sharedMaterial = _defaultMaterial;
             }
         }
 
@@ -179,13 +187,13 @@ namespace GoodJobInternshipCase.Rendering
         {
             _startPos = spawnPos;
             _targetPos = targetPos;
-            _startScale = Vector3.zero;
-            _targetScale = Vector3.one;
+            _startScale = s_zero;
+            _targetScale = s_one;
             _animationTime = 0f;
             _animationDuration = duration;
             _currentAnimation = AnimationType.Spawn;
             _transform.position = spawnPos;
-            _transform.localScale = Vector3.zero;
+            _transform.localScale = s_zero;
         }
 
         /// <summary>
@@ -193,8 +201,8 @@ namespace GoodJobInternshipCase.Rendering
         /// </summary>
         public void StartBlastAnimation(float duration)
         {
-            _startScale = Vector3.one;
-            _targetScale = Vector3.zero;
+            _startScale = s_one;
+            _targetScale = s_zero;
             _animationTime = 0f;
             _animationDuration = duration;
             _currentAnimation = AnimationType.Blast;
@@ -205,7 +213,7 @@ namespace GoodJobInternshipCase.Rendering
         /// </summary>
         public void StartShuffleAnimation(float duration)
         {
-            _startScale = Vector3.one;
+            _startScale = s_one;
             _animationTime = 0f;
             _animationDuration = duration;
             _currentAnimation = AnimationType.Shuffle;
@@ -265,7 +273,7 @@ namespace GoodJobInternshipCase.Rendering
         private void UpdateBlastAnimation(float t)
         {
             float inverseT = 1f - t;
-            _transform.localScale = Vector3.one * inverseT;
+            _transform.localScale = new Vector3(inverseT, inverseT, 1f);
 
             Color c = _originalColor;
             c.a = inverseT;
@@ -274,20 +282,20 @@ namespace GoodJobInternshipCase.Rendering
 
         private void UpdateShuffleAnimation(float t)
         {
-            // Scale punch effect
+            // Simplified scale punch effect (less math)
             float scale;
             if (t < 0.5f)
             {
-                // Scale down
-                scale = Mathf.Lerp(1f, 0.7f, t * 2f);
+                // Scale down: 1.0 -> 0.7
+                scale = 1f - t * 0.6f;
             }
             else
             {
-                // Scale up with overshoot
-                scale = Mathf.Lerp(0.7f, 1f, (t - 0.5f) * 2f);
-                scale *= 1f + Mathf.Sin((t - 0.5f) * Mathf.PI * 2f) * 0.1f;
+                // Scale up: 0.7 -> 1.0 with slight overshoot
+                float t2 = (t - 0.5f) * 2f;
+                scale = 0.7f + t2 * 0.35f; // Simplified from Lerp + Sin
             }
-            _transform.localScale = Vector3.one * scale;
+            _transform.localScale = new Vector3(scale, scale, 1f);
         }
 
         private void CompleteAnimation()
@@ -303,12 +311,12 @@ namespace GoodJobInternshipCase.Rendering
                     break;
 
                 case AnimationType.Spawn:
-                    _transform.localScale = Vector3.one;
+                    _transform.localScale = s_one;
                     _transform.position = _targetPos;
                     break;
 
                 case AnimationType.Shuffle:
-                    _transform.localScale = Vector3.one;
+                    _transform.localScale = s_one;
                     break;
             }
 

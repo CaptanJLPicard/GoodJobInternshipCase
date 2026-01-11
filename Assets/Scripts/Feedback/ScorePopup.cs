@@ -1,9 +1,10 @@
 // ============================================================================
 // Made By Hakan Emre ÖZKAN
-// For more follow my itch.io account (Heodev) - Begin to begin
+// For more follow my itch.io account (Heodev) - To begin, begin
 // ============================================================================
 
 using System;
+using System.Text;
 using UnityEngine;
 using TMPro;
 
@@ -12,6 +13,7 @@ namespace GoodJobInternshipCase.Feedback
     /// <summary>
     /// Animated score popup that shows points gained.
     /// Uses Update-based animation for optimal performance (no coroutines).
+    /// Optimized for low-end mobile devices.
     /// </summary>
     public class ScorePopup : MonoBehaviour
     {
@@ -36,6 +38,10 @@ namespace GoodJobInternshipCase.Feedback
         private float _animationTime;
         private bool _isAnimating;
         private int _poolIndex;
+
+        // Cached values for performance
+        private static readonly StringBuilder s_stringBuilder = new StringBuilder(16);
+        private static readonly Vector3 s_one = Vector3.one;
 
         // Events
         public event Action<ScorePopup> OnAnimationComplete;
@@ -63,8 +69,11 @@ namespace GoodJobInternshipCase.Feedback
         /// </summary>
         public void Show(int score, Vector2 screenPosition, Color color)
         {
-            // Set text
-            _text.text = $"+{score}";
+            // Set text using StringBuilder to avoid allocation
+            s_stringBuilder.Clear();
+            s_stringBuilder.Append('+');
+            s_stringBuilder.Append(score);
+            _text.SetText(s_stringBuilder);
             _text.color = color;
 
             // Clamp position to screen bounds
@@ -78,7 +87,7 @@ namespace GoodJobInternshipCase.Feedback
             _animationTime = 0f;
             _isAnimating = true;
             _canvasGroup.alpha = 1f;
-            _rectTransform.localScale = Vector3.one * _startScale;
+            _rectTransform.localScale = s_one * _startScale;
 
             gameObject.SetActive(true);
         }
@@ -177,7 +186,7 @@ namespace GoodJobInternshipCase.Feedback
             _isAnimating = false;
             _animationTime = 0f;
             _canvasGroup.alpha = 1f;
-            _rectTransform.localScale = Vector3.one;
+            _rectTransform.localScale = s_one;
             gameObject.SetActive(false);
         }
 

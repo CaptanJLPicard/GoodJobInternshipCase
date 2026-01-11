@@ -32,6 +32,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-7652062355694696218-0
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1278172562-0
         - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1289445220-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8c9cfa26abfee488c85f1582747f6a02-1985084912-0
         values:
         - colorIndex: 2
           iconNameOrGuid: cs Script Icon
@@ -87,6 +88,10 @@ MonoBehaviour:
           isColorRecursive: 0
         - colorIndex: 9
           iconNameOrGuid: AudioSource Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 2
+          iconNameOrGuid: cs Script Icon
           isIconRecursive: 0
           isColorRecursive: 0
   bookmarks: []

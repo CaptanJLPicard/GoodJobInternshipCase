@@ -1,6 +1,6 @@
 // ============================================================================
 // Made By Hakan Emre ÖZKAN
-// For more follow my itch.io account (Heodev) - Begin to begin
+// For more follow my itch.io account (Heodev) - To begin, begin
 // ============================================================================
 
 using System.Collections.Generic;
