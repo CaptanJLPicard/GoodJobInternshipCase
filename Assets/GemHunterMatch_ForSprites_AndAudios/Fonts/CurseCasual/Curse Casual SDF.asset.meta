@@ -11,5 +11,6 @@ AssetOrigin:
   productId: 278941
   packageName: Gem Hunter Match - 2D Sample Project
   packageVersion: 1.6
-  assetPath: Assets/GemHunterMatch/Fonts/CurseCasual/Curse Casual SDF.asset
+  assetPath: Assets/GemHunterMatch_ForSprites_AndAudios/Fonts/CurseCasual/Curse Casual
+    SDF.asset
   uploadId: 699660

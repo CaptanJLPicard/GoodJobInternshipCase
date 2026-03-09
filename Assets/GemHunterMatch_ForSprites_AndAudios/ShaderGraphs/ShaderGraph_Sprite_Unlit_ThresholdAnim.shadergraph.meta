@@ -13,5 +13,5 @@ AssetOrigin:
   productId: 278941
   packageName: Gem Hunter Match - 2D Sample Project
   packageVersion: 1.6
-  assetPath: Assets/GemHunterMatch/ShaderGraphs/ShaderGraph_Sprite_Unlit_ThresholdAnim.shadergraph
+  assetPath: Assets/GemHunterMatch_ForSprites_AndAudios/ShaderGraphs/ShaderGraph_Sprite_Unlit_ThresholdAnim.shadergraph
   uploadId: 699660

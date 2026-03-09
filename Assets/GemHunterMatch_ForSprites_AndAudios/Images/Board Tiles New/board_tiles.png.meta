@@ -5,7 +5,7 @@ AssetOrigin:
   productId: 278941
   packageName: Gem Hunter Match - 2D Sample Project
   packageVersion: 1.6
-  assetPath: Assets/GemHunterMatch/Images/Board Tiles New/board_tiles.png
+  assetPath: Assets/GemHunterMatch_ForSprites_AndAudios/Images/Board Tiles New/board_tiles.png
   uploadId: 699660
 TextureImporter:
   internalIDToNameTable: []
@@ -41,7 +41,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1

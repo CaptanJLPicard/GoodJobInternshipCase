@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3f9215ea0144899419cfbc0957140d3f
+guid: 75885cfb67c1540c5adf61e0dd02118b
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000
@@ -10,6 +10,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 278941
   packageName: Gem Hunter Match - 2D Sample Project
-  packageVersion: 
+  packageVersion: 1.6
   assetPath: Assets/DefaultVolumeProfile.asset
-  uploadId: 0
+  uploadId: 699660
